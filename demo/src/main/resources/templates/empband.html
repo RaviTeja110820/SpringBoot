@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body bgcolor="cyan">
+	<h1 th:text="${data}"></h1>
+	<h1 th:inline="text">[[${data}]]</h1>
+	<h1 data-th-text="${data}" />
+	
+</body>
+</html>
