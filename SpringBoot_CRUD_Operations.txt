@@ -1,0 +1,1031 @@
+Spring Boot Day-1
+-----------------
+
+
+https://start.spring.io/
+
+
+Spring Boot
+-----------
+
+Project   : Maven
+Language  : Java
+SpringBoot: 2.7.10
+
+Group       : com.ts
+Artifact    : springboot
+Name        : springboot
+Description : leave it
+package Name: com.ts
+
+Packaging: jar
+Java     : 8
+
+
+Depencencies
+Web: Spring Web
+SQL: Spring Data JPA
+SQL: MySQL Driver
+
+
+
+
+
+Step-1
+------
+Comment the following dependencies under pom.xml
+
+pom.xml
+-------
+<dependencies>
+	
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- <dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency> -->
+		
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+
+
+
+
+
+
+Step-2
+------
+Create a class under com.ts called HiController and write the following code:
+
+
+HiController.java
+-----------------
+package com.ts;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HiController {
+	
+	@RequestMapping("/hi")
+	public String hi() {
+		return "hi controller called!!!";
+	}
+
+}
+
+
+
+
+
+
+
+Step-3
+------
+Now open the SpringBootApplication.java file and run the programs as
+RightClick --->  Run As --->  Java Application
+
+
+
+
+
+
+Step-4
+------
+Now Open the Browser and provide the following url:
+http://localhost:8080/hi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Assignment
+----------
+Implement Hello Request Mapping
+
+
+
+HiController.java
+-----------------
+package com.ts;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HiController {
+	
+	@RequestMapping("/hi")
+	public String hi() {
+		return "hi controller called!!!";
+	}
+	
+	@RequestMapping("/hello")
+	public String hello() {
+		return "hello controller called!!!";
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create a class called ByeController under com.ts package
+
+
+
+ByeController.java
+------------------
+
+package com.ts;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ByeController {
+
+	@RequestMapping("/bye")
+	public String bye() {
+		return "bye controller called!!!";
+	}
+	
+	@RequestMapping("/thankyou")
+	public String thankyou() {
+		return "thankyou controller called!!!";
+	}
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+Product
+-------
+
+
+1. Create a package under src/main/java called com.model
+2. Create a Product class under com.model package
+
+Product.java
+------------
+package com.model;
+
+public class Product {
+
+	private int prodId;
+	private String prodName;
+	private double price;
+	
+	public Product() {
+		super();
+	}
+
+	public Product(int prodId, String prodName, double price) {
+		super();
+		this.prodId = prodId;
+		this.prodName = prodName;
+		this.price = price;
+	}
+
+	public int getProdId() {
+		return prodId;
+	}
+
+	public void setProdId(int prodId) {
+		this.prodId = prodId;
+	}
+
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [prodId=" + prodId + ", prodName=" + prodName + ", price=" + price + "]";
+	}
+	
+	
+}
+
+
+
+
+
+3. Create a class called ProductController under com.ts package 
+
+
+ProductController.java
+----------------------
+package com.ts;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.model.Product;
+
+@RestController
+public class ProductController {
+	
+	@RequestMapping("/showProduct")
+	public Product showProduct() {
+		
+		Product product = new Product();
+		
+		product.setProdId(101);
+		product.setProdName("Laptop");
+		product.setPrice(45999.00);
+		
+		return product;
+	}
+
+}
+
+
+
+
+4. Run the project and use the following url:
+http://localhost:8085/showProduct
+
+
+
+
+**********************************************************************
+
+
+
+showAllProducts
+
+http://localhost:8085/showAllProducts
+
+
+
+Spring Boot Day-2
+-----------------
+
+1. uncomment the following dependencies under pom.xml
+
+
+pom.xml
+-------
+<dependencies>
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+
+
+
+-------------------------------------------------------------------------
+
+
+
+2. provide the following configuration under application.properties from (src/main/resources):
+
+
+
+
+
+application.properties
+----------------------
+
+
+
+
+
+-------------------------------------------------------------------------
+server.port=8085
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url = jdbc:mysql://localhost:3306/fsd42
+spring.datasource.username = root
+spring.datasource.password = root
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto = update
+
+
+
+3. update the Product class as an Entity class as:
+
+
+com.model
+
+
+Product.java
+------------
+
+package com.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Product {
+
+	@Id@GeneratedValue
+	private int prodId;
+	
+	@Column(name="productName", length=20)
+	private String prodName;
+	private double price;
+	
+	public Product() {
+		super();
+	}
+
+	public Product(int prodId, String prodName, double price) {
+		super();
+		this.prodId = prodId;
+		this.prodName = prodName;
+		this.price = price;
+	}
+
+	public int getProdId() {
+		return prodId;
+	}
+
+	public void setProdId(int prodId) {
+		this.prodId = prodId;
+	}
+
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [prodId=" + prodId + ", prodName=" + prodName + ", price=" + price + "]";
+	}
+	
+	
+}
+
+
+-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+4. Create a package called com.dao and in that create an interface called ProductRepository as:
+
+
+
+ProductRepository (com.dao) (interface)
+---------------------------------------
+
+
+package com.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.model.Product;
+
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+}
+
+
+
+
+
+
+-------------------------------------------------------------------------
+
+
+5. Under com.dao package create a class called ProductDAO as:
+
+ProductDAO.java
+---------------
+
+package com.dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.model.Product;
+
+@Service
+public class ProductDAO {
+
+	@Autowired
+	ProductRepository productRepository;
+	
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
+
+}
+
+
+
+
+
+
+
+-------------------------------------------------------------------------
+
+
+6. Under ProductController.java, write the folling code:
+
+
+package com.ts;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dao.ProductDAO;
+import com.model.Product;
+
+@RestController
+public class ProductController {
+	
+	//Dependency Injection
+	@Autowired
+	ProductDAO prodDAO;
+	
+	@GetMapping("/getAllProducts")
+	public List<Product> getAllProducts() {
+		return prodDAO.getAllProducts();
+	}
+	
+}
+
+
+-------------------------------------------------------------------------
+
+
+7. Update the SpringBootAppication.java as:
+
+package com.ts;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+@EnableJpaRepositories(basePackages="com.dao")
+@EntityScan(basePackages="com.model")
+@SpringBootApplication(scanBasePackages="com")
+public class SpringbootApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringbootApplication.class, args);
+	}
+
+}
+
+
+
+
+
+-------------------------------------------------------------------------
+
+
+
+
+
+8. Run the project, check whether Product table is created under FSD42 Database.
+
+Use the following url to run the project:
+insert into product values (101, 45999.00, 'Laptop'), (102, 55999.99, 'Mobile'), (103, 5999.00, 'Mouse');
+
+output: []
+
+
+-------------------------------------------------------------------------
+
+
+
+
+9. Bow add the products manually in the Product table as:
+insert into product values (101, 45999.00, 'Laptop'), (102, 55999.99, 'Mobile'), (103, 5999.00, 'Mouse');
+
+select * from Product;
+
+
+Now re-run the url:
+http://localhost:8085/getAllProducts
+
+Output:
+[{"prodId":101,"prodName":"Laptop","price":45999.0},{"prodId":102,"prodName":"Mobile","price":55999.99},{"prodId":103,"prodName":"Mouse","price":5999.0}]
+
+
+-------------------------------------------------------------------------
+
+
+
+
+
+-------------------------------------------------------------------------
+
+
+GetProductById
+**************
+
+
+
+
+ProductController.java
+----------------------
+
+package com.ts;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dao.ProductDAO;
+import com.model.Product;
+
+@RestController
+public class ProductController {
+	
+	//Dependency Injection
+	@Autowired
+	ProductDAO prodDAO;
+	
+	@GetMapping("/getAllProducts")
+	public List<Product> getAllProducts() {
+		return prodDAO.getAllProducts();
+	}
+	
+	@GetMapping("/getProductById/{prodId}")
+	public Product getProductById(@PathVariable("prodId") int prodId) {		
+		return prodDAO.getProductById(prodId);
+	}
+	
+	
+	
+}
+
+
+
+
+
+
+-------------------------------------------------------------------------
+
+
+ProductDAO
+----------
+
+package com.dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.model.Product;
+
+@Service
+public class ProductDAO {
+
+	@Autowired
+	ProductRepository productRepository;
+	
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
+
+	public Product getProductById(int prodId) {
+		return productRepository.findById(prodId).orElse(new Product(0, "Product Not Found!!", 0.0));
+	}
+
+}
+
+
+
+
+-------------------------------------------------------------------------
+
+
+
+
+Spring Boot Day-3
+-----------------
+
+
+ProductController
+-----------------
+@GetMapping("/getProductByName/{prodName}")
+public Product getProductByName(@PathVariable("prodName") String prodName) {
+    return prodDAO.getProductByName(prodName);
+}
+	
+
+
+
+ProductDAO
+----------
+public Product getProductByName(String prodName) {
+    return productRepository.findByName(prodName);
+}
+
+
+
+
+ProductRepository
+-----------------
+package com.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.model.Product;
+
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+	@Query("from Product p where p.prodName = :prodName")
+	Product findByName(@Param("prodName") String prodName);
+	
+}
+
+
+
+----  Done
+
+
+
+
+***************************************************************************************
+
+
+RegiseterProduct
+----------------
+
+
+ProductController
+-----------------
+@PostMapping("registerProduct")
+public Product registerProduct(@RequestBody Product product) {	
+    return prodDAO.registerProduct(product);
+}
+
+
+
+
+ProductDAO
+----------
+public Product registerProduct(Product product) {
+    return productRepository.save(product);
+}
+
+
+
+PostMan
+-------
+Request     : POST
+URL         : http://localhost:8085/registerProduct
+Tab         : Body Tab
+RadioButton : RAW (Radio Button)
+Type of Data: JSON (from Dropdown show cased with Text)
+
+Provide the Product Object as:
+{
+    "prodId": 104,
+    "prodName": "Pendrive",
+    "price": 599.0
+}
+
+Click on Send Button
+
+
+Output:
+-------
+{
+    "prodId": 1,
+    "prodName": "Pendrive",
+    "price": 599.0
+}
+
+----  Done
+
+
+
+
+
+
+***************************************************************************************
+
+
+
+
+UpdateProduct
+-------------
+
+
+
+ProductController
+-----------------
+@PutMapping("updateProduct")
+public Product updateProduct(@RequestBody Product product) {	
+    return prodDAO.updateProduct(product);
+}
+
+
+
+
+ProductDAO
+----------
+public Product updateProduct(Product product) {
+    return productRepository.save(product);
+}
+
+
+
+PostMan
+-------
+Request     : POST
+URL         : http://localhost:8085/updateProduct
+Tab         : Body Tab
+RadioButton : RAW (Radio Button)
+Type of Data: JSON (from Dropdown show cased with Text)
+
+Provide the Product Object as:
+{
+    "prodId": 1,
+    "prodName": "Pendrive 3.0",
+    "price": 800.0
+}
+
+Click on Send Button
+
+
+Output: Update Operation as prodId is already available in the Product Table
+-------
+{
+    "prodId": 1,
+    "prodName": "Pendrive 3.0",
+    "price": 800.0
+}
+
+
+
+
+
+
+Provide the Product Object as:
+{
+    "prodId": 104,
+    "prodName": "Pendrive 3.0",
+    "price": 800.0
+}
+
+Click on Send Button
+
+
+Output: Insert Operation as prodId is not available in the Product Table
+-------
+{
+    "prodId": 2,
+    "prodName": "Pendrive 3.0",
+    "price": 800.0
+}
+
+
+----  Done
+
+
+
+
+
+
+***************************************************************************************
+
+
+
+
+DeleteProduct
+-------------
+
+ProductController
+-----------------
+@DeleteMapping("deleteProduct/{prodId}")
+public String deleteProduct(@PathVariable("prodId") int prodId) {
+    prodDAO.deleteProduct(prodId);
+    return "Product with ProductId: " + prodId + " Deleted Successfully!!!";
+}
+
+
+
+
+ProductDAO
+----------
+public void deleteProduct(int prodId) {
+    productRepository.deleteById(prodId);
+}
+
+
+PostMan
+-------
+Request     : Delete
+URL         : http://localhost:8085/deleteProduct/1
+URL         : http://localhost:8085/deleteProduct/2
+
+
+
+----  Done
+
+
+
+
+
+
+***************************************************************************************
+
+
+Assignment for Tomorrow
+-----------------------
+
+Department 
+----------
+(deptId, deptName, location)
+
+1. DepartmentController
+2. DepartmentDAO
+3. DepartmentRepository
+
+All Crud Operations
+
+
+
+Employee 
+--------
+(empId, empName, salary, gender, country, doj, emailId, password)
+
+Date Format:  MM-dd-yyyy
+
+1. EmployeeController
+2. EmployeeDAO
+3. EmployeeRepository
+
+All Crud Operations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
